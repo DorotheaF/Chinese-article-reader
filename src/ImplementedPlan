@@ -1,0 +1,25 @@
+
+My To-do
+	make folder with HSK word lists
+	have folder with output files and directory
+		how to print and read from files java?
+	figure out class structure for word lists, and printing format
+	make hsk word list with right format
+	read in hsk word list
+	read in segmented words to graph 
+	check and see if words match HSK
+		if so, tick mark in vertex
+	Check and see if in known, learning, and (add to new?)
+	//other stuff?
+	Print to article file
+		with title and source
+		
+		
+have "known" list of words, and "learning" list
+
+		
+word Storage Method
+	make graph of individual characetrs sorted by unicode
+		have that char connected to all words starting with it
+		itterate through those until found word, or not found
+			if not found add to new

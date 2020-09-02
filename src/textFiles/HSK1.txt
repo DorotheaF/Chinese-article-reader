@@ -1,0 +1,150 @@
+愛, ài, love, 1, und
+八, bā, eight, 1, und
+爸爸, bàba, Dad, 1, und
+杯子, bēizi, cup; glass, 1, und
+北京, Běijīng, Beijing, 1, und
+本, běn, measure word for books, 1, und
+不客氣, bú kèqi, you're welcome; don't be polite, 1, und
+不, bù, no; not, 1, und
+菜, cài, dish (type of food); vegetables, 1, und
+茶, chá, tea, 1, und
+吃, chī, eat, 1, und
+出租車, chūzūchē, taxi; cab, 1, und
+打電話, dǎ diànhuà, make a phone call, 1, und
+大, dà, big; large, 1, und
+的, de, indicates possession, 1, und
+點, diǎn, a dot; a little; o'clock, 1, und
+電腦, diànnǎo, computer, 1, und
+電視, diànshì, television; TV, 1, und
+電影, diànyǐng, movie; film, 1, und
+東西, dōngxi, things; stuff, 1, und
+都, dōu, all; both, 1, und
+讀, dú, to read; to study, 1, und
+對不起, duìbuqǐ, sorry, 1, und
+多, duō, many, 1, und
+多少, duōshao, how much?; how many?, 1, und
+兒子, érzi, son, 1, und
+二, èr, two, 1, und
+飯店, fàndiàn, restaurant; hotel, 1, und
+飛機, fēijī, airplane, 1, und
+分鐘, fēnzhōng, minute; (measure word for time), 1, und
+高興, gāoxìng, happy; glad, 1, und
+個, ge, general measure word, 1, und
+工作, gōngzuò, work; a job, 1, und
+狗, gǒu, dog, 1, und
+漢語, Hànyǔ, Chinese language, 1, und
+好, hǎo, good, 1, und
+號, hào, number; day of a month, 1, und
+喝, hē, to drink, 1, und
+和, hé, and; with, 1, und
+很, hěn, very; quite, 1, und
+後面, hòumian, back; behind, 1, und
+回, huí, to return; to reply; to go back, 1, und
+會, huì, know how to, 1, und
+幾, jǐ, how many; several; a few, 1, und
+家, jiā, family; home, 1, und
+叫, jiào, to be called, 1, und
+今天, jīntiān, today, 1, und
+九, jiǔ, nine, 1, und
+開, kāi, to open; to start; to operate (a vehicle), 1, und
+看, kàn, see; look at; to watch, 1, und
+看見, kànjiàn, see; catch sight of, 1, und
+塊, kuài, lump; piece; sum of money, 1, und
+來, lái, come; arrive; ever since; next, 1, und
+老師, lǎoshī, teacher, 1, und
+了, le, indicates a completed or finished action, 1, und
+冷, lěng, cold, 1, und
+裡, lǐ, inside; Chinese mile (~.5 km), 1, und
+六, liù, six, 1, und
+媽媽, māma, mom; mum, 1, und
+嗎, ma, indicates a yes/no question (added to a statement), 1, und
+買, mǎi, to buy, 1, und
+貓, māo, cat, 1, und
+沒關係, méi guānxi, it doesn't matter; never mind, 1, und
+沒有, méiyǒu, not have; there is not, 1, und
+米飯, mǐfàn, (cooked) rice, 1, und
+明天, míngtiān, tomorrow, 1, und
+名字, míngzi, name, 1, und
+哪, nǎa, which; how, 1, und
+哪兒, nǎr, where? (Beijing accent), 1, und
+那, nà, that; then, 1, und
+呢, ne, indicates a question; how about...?;, 1, und
+能, néng, can; be able, 1, und
+你, nǐ, you (singular), 1, und
+年, nián, year, 1, und
+女兒, nǚ'ér, daughter, 1, und
+朋友, péngyou, friend, 1, und
+漂亮, piàoliang, pretty; beautiful, 1, und
+蘋果, píngguǒ, apple, 1, und
+七, qī, seven, 1, und
+錢, qián, money; coin, 1, und
+前面, qiánmiàn, in front, 1, und
+請, qǐng, please; invite; to treat someone to something, 1, und
+去, qù, go; to leave, 1, und
+熱, rè, heat; hot, 1, und
+人, rén, person; man; people, 1, und
+認識, rènshi, recognize; know (a person), 1, und
+三, sān, three, 1, und
+商店, shāngdiàn, shop; store, 1, und
+上, shàng, above; up, 1, und
+上午, shàngwǔ, late morning (before noon), 1, und
+少, shǎo, few; little, 1, und
+誰, shéi, who, 1, und
+什麼, shénme, what? (replaces the noun to turn a statement into a question), 1, und
+十, shí, ten, 1, und
+時候, shíhou, time, 1, und
+是, shì, be; is; are; am, 1, und
+書, shū, book; letter, 1, und
+水, shuǐ, water, 1, und
+水果, shuǐguǒ, fruit, 1, und
+睡覺, shuì jiào, to sleep; go to bed, 1, und
+說, shuō, speak, 1, und
+四, sì, four, 1, und
+歲, suì, years old; age, 1, und
+他, tā, he; him, 1, und
+她, tā, she, 1, und
+太, tài, too (much), 1, und
+天氣, tiānqì, weather, 1, und
+聽, tīng, listen; hear, 1, und
+同學, tóngxué, fellow student; schoolmate, 1, und
+餵, wèi, hello (on the phone), 1, und
+我, wǒ, I; me, 1, und
+我們, wǒmen, we; us, 1, und
+五, wǔ, five, 1, und
+喜歡, xǐhuan, to like, 1, und
+下, xià, fall; below, 1, und
+下午, xiàwǔ, afternoon, 1, und
+下雨, xiàyǔ, to rain, 1, und
+先生, xiānsheng, Mr.; Sir, 1, und
+現在, xiànzài, now, 1, und
+想, xiǎng, think; believe; suppose; would like to, 1, und
+小, xiǎo, small; young, 1, und
+小姐, xiǎojie, young lady; miss; Ms., 1, und
+些, xiē, some; few; several, 1, und
+寫, xiě, to write; to compose, 1, und
+謝謝, xièxie, thank you, 1, und
+星期, xīngqī, week, 1, und
+學生, xuésheng, student, 1, und
+學習, xuéxí, learn; to study, 1, und
+學校, xuéxiào, school, 1, und
+一, yī, one; once; a, 1, und
+衣服, yīfu, clothes, 1, und
+醫生, yīshēng, doctor, 1, und
+醫院, yīyuàn, hospital, 1, und
+椅子, yǐzi, chair, 1, und
+一點兒, yìdiǎnr, a bit; a few, 1, und
+有, yǒu, have, 1, und
+月, yuè, moon; month, 1, und
+在, zài, at; on; in; indicates an action in progress, 1, und
+再見, zàijiàn, goodbye; see you later, 1, und
+怎麼, zěnme, how?, 1, und
+怎麼樣, zěnmeyàng, how about?; how is/was it?, 1, und
+這, zhè, this, 1, und
+中國, Zhōngguó, China, 1, und
+中午, zhōngwǔ, noon; midday, 1, und
+住, zhù, to live; reside; to stop, 1, und
+桌子, zhuōzi, table; desk, 1, und
+字, zì, letter; character, 1, und
+昨天, zuótiān, yesterday, 1, und
+做, zuò, do; make, 1, und
+坐, zuò, sit, 1, und

@@ -1,0 +1,90 @@
+Function list
+
+Window Functions:::
+makeAWindow();
+uploadNewFile();
+uploadNewText();
+uploadSuccessful(); 
+articleLister();
+articleReader();
+wordPopup();
+ 
+makeAWindow
+	makes basic interface
+		exit button, title, intro message
+	has several options
+		exit
+		upload new file (effectively same upload text chunk)
+		upload new text chunk -- passes into article categorizer 
+			allows user to input optional English name
+			allows user to add Chinese name (otherwise auto-takes first sentance up to x words of article)
+			allows user to input source
+			has button to confirm upload
+				(if articleCatagorizer returns true) displays thank you message and continue to article or return to main menu
+				(2)shows error message and return to main menu if empty or broken
+		read article from database
+			takes to new screen with titles of articles in Chinese (and English?) with word difficulty
+				separate directory with info on all articles
+			clicking article calls retrieveArticle function
+			also calls buildReadScreen function to display data
+			has dynamic attached function to read mouse location and build new popup windows with info from graph (english meaning, difficulty, link to pleco?)
+				(2)popup allows saving to flashcard
+		
+
+
+articleCatagorizer(article)
+	finds words
+	stores words in graph 
+		each node stores word level, meaning, location (edge to next word)
+	prints to file the words and info
+		has title at beginning of article, and optional English name and source
+	calls difficulty rater function to get level of article
+	prints titles, name of txt file, %difficulty to master directory
+	returns true if worked
+	
+	
+	
+My Program functions
+	class: ChineseWord
+			Chinese character,
+			difficulty level
+			list appearance
+			English definition
+			
+	textIn
+	articleIn	
+	articleCleaner
+	readInLists
+		HSK and vocab lists
+	checkDifficulty
+	articleToFile
+		adds to directory file
+
+
+
+To-Do pt 2
+	make re-vamp articles with new learned vocab (auto check on opening?)
+	re-vamp directory with added tags
+	make method to change article title, etc
+	make interface for reading article 
+		give word examples for all characters in a word
+		make way to add words to dictionary from article interface, or otherwise
+	read in chinese article file
+		text cleaner, shorthand for formatting (new time, tab, indent, bullet pts, etc)
+	export article as readable, with associated vocab list (in order of occurance)
+	pleco api for better word translation?
+		use their dictionary
+		have option to open pleco in reading interface
+	flashcard interface
+		give word examples for all characters in a word
+	movie finished message to center screen
+	
+TODO pt 3
+	article cleaner
+	make sure gui reader functions with all lengths of articles
+	add example words for characters
+	clean up spaces between buttons reader gui, make better formatting reader gui
+
+	
+
+

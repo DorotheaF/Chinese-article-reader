@@ -1,0 +1,3 @@
+1,一,one; once; a
+1,點,a dot; a little; o'clock
+1,中文,Chinese (language)
