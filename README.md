@@ -6,12 +6,16 @@ Future features include difficulty grading, a new vocab print out for an article
 
 The current UI is very basic and will be updated when the core functionality is completed. The file system will be cleaned up at the same time.
 
-<img src="https://github.com/DorotheaF/Chinese-article-reader/blob/master/ArticleMain.JPG" height="300">
+<img src="https://github.com/DorotheaF/Chinese-article-reader/blob/master/ArticleMain.JPG" height="400">
 This is the main menu.
 
 
-<img src="https://github.com/DorotheaF/Chinese-article-reader/blob/master/ArticleUpload.JPG" height="300">
+<img src="https://github.com/DorotheaF/Chinese-article-reader/blob/master/ArticleUpload.JPG" height="400">
 This is the upload text screen.
+
+
+<img src="https://github.com/DorotheaF/Chinese-article-reader/blob/master/ArticleReader.JPG" height="400">
+This is the reader screen, with definition and vocab list options at the top.
 
 ## Download and Set-up Instructions
 Needs Java installed to run (created with eclipse)
