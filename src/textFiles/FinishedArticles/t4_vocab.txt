@@ -1,0 +1,7 @@
+1,一,one; once; a
+1,角,jiǎo
+1,的,indicates possession
+1,時候,time
+1,一,one; once; a
+1,應該,should; ought to; must
+1,是,be; is; are; am

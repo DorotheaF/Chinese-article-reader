@@ -16,7 +16,23 @@ import segger.Art2Seg;
 
 public class MyProgram {
 	
-	String chinTitle;
+	//The way this works:
+	//User uploads text in the UI, it gets sent here as an array of [Chinese title, English Title, Source, text, (not yet calculated) Difficulty]
+		//If the user loads an article instead of text, it gets cleaned and formatted as simple text with certain characters removed (this is still in progress)
+		//Either eay, the text gets converted to the traditional character set
+	//The text gets sent to the Stanford NLP Segmenter which returns a list of separated words
+	//The program loads in the Chinese dictionary and hsk lists into a WordMap of Chinese word nodes (Chinese word, pronunciation, English definition, difficulty level, known/learning/unknown)
+	//The program then creates a files, EnglishTitle.txt, to store the words with all their info. This file name gets added to the directory file.
+	//Then it iterates through the segmented list, and compares each word with nodes from the dictionary WordMap 
+		//If it finds the node, it writes it (and any punctuation) the file with the format of > Word, info, more info > Word, info, more info (i.e >你, nǐ, you (singular), 1, known>好, hǎo, good, 1, known>。)
+		//If it doesn't find the node, it writes the info fields as "-", which usually means the NLP segmenter split the words incorrectly
+	
+	//The second step, once one or more articles have been processed, is reading the article
+	//The user click the title of an article in the UI, and that calls the backToReadable function, which creates a WordMap out of the file
+	//The WordMap gets sent back to the UI, which makes an array of buttons, each with a word. Clicking on a button calls the associated node and displays its info at the top of the screen (as well as add to vocab list options)
+	
+	
+	String chinTitle; //these variables are the name and content of the uploaded text
 	static String engTitle;
 	String source;
 	String articleFileName; //if the user input a file instead of text
@@ -35,13 +51,12 @@ public class MyProgram {
 		//System.out.println(args[0]);
 		
 		try {
-			Instance.graphFiller();
-			Instance.textToSegmenter();
-			
-			Instance.writeArticleAsNodes();
-			Instance.backToReadable(engTitle);
-			Instance.difficultyCalculator();
-			Instance.addToDir();
+			Instance.graphFiller(); //fills the dictionary WordMap
+			Instance.textToSegmenter(); //Segments text 			
+			Instance.writeArticleAsNodes(); //Writes words/nodes to new file
+			//Instance.backToReadable(engTitle); 
+			Instance.difficultyCalculator(); //Not yet implemented. Will calculate difficulty level of the article based on percentages of words of different difficulties
+			Instance.addToDir(); //adds the new file to the directory 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -50,14 +65,7 @@ public class MyProgram {
 	}
 	
 	public void graphFiller() throws IOException {
-		//for HSK 1-6
-		//for known
-		//for learning
-		//new; null
-		//open file
-		//for each ___, args = thing
-		//myMap add node
-		//on run through myVocab files updates known
+		//for HSK 1-6, and large c-dict 
 		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//HSK1.txt"); 
 		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//HSK2.txt"); 
 		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//HSK3.txt"); 
@@ -66,15 +74,12 @@ public class MyProgram {
 		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//HSK6.txt"); 
 		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//c-dict.txt"); 
 		addMyLists();
-		//System.out.println("Graphfilled");
-		//myMap.printNodes();
 		
-		//String test = myMap.getNode("你好").chinWord;
-		//System.out.println(test);
-		//System.out.println(myM))
+		//System.out.println("Graphfilled"); 
+		//myMap.printNodes();
 	}
 	
-	public void readInFile(String filename) throws IOException {
+	public void readInFile(String filename) throws IOException { //This is not functional for now
 		BufferedReader in = new BufferedReader(new FileReader(filename));
 		String [] args = new String[5];
 		String tempy;
@@ -92,7 +97,7 @@ public class MyProgram {
 		in.close();
 	}
 	
-	public void addMyLists() throws IOException {
+	public void addMyLists() throws IOException { //reads in my known words (adds to last field in node if known/learning)
 		BufferedReader in = new BufferedReader(new FileReader("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//knownWords.txt"));
 		String tempy;
 		while((tempy=in.readLine())!=null) {
@@ -118,24 +123,23 @@ public class MyProgram {
 		}
 		engTitle = EngTitle;
 		source = Source;
-		if (Art=="false") {
-			//check if text is clean
-			//try {
-				//TODO check if text is trad or simp
-				text = Text; //textToTraditional(Text);
-			///} catch (IOException e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
-			//}
+		if (Art=="false") { 
+			//TODO check if text is traditional or simplified, implement choice for user for display
+			try {
+				text = textToTraditional(Text);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}			
 		}
 		else if (Art=="true") {
 			System.out.println("check variableFiller line 129 MyProgram");
+			//TODO implement article file cleaner
 			//call article cleaner and reader, return text and equal text
 		}
 
 	}
 	
-	public String textToSimplified(String text) throws IOException {
+	public String textToSimplified(String text) throws IOException { //convert text to simplified
 		String[] textTemp = new String[text.length()];
 		textTemp = text.split("");
 		Hashtable<String, String> chars = new Hashtable<String, String>();
@@ -170,7 +174,7 @@ public class MyProgram {
 		return text;
 	}
 	
-	public String textToTraditional(String text) throws IOException {
+	public String textToTraditional(String text) throws IOException { //convert text to traditional 
 		String[] textTemp = new String[text.length()];
 		textTemp = text.split("");
 		Hashtable<String, String> chars = new Hashtable<String, String>();
@@ -179,7 +183,7 @@ public class MyProgram {
 		String[] indivChar;
 		BufferedReader in = new BufferedReader(new FileReader("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//TradToSimp.txt"));
 		while ((tempy = in.readLine()) != null) {
-			System.out.println(tempy);
+			//System.out.println(tempy);
 			indivChar = tempy.split("	");
 			chars.put(indivChar[1], indivChar[0]);
 			//System.out.println("added " + indivChar[1] + " and " + indivChar[0]);
@@ -205,20 +209,18 @@ public class MyProgram {
 		return text;
 	}
 	
-	public void articleToText() {
+	public void articleToText() { //TODO
 		//open article, find title and source(2)--when only file is given--clean text, enter it into text variable 
 	}
 	
 	public void textToSegmenter() {
 		//takes text variable, separates each line, sends to segmenter, finishes with array of words.
-		 Art2Seg seg = new Art2Seg();
+		 Art2Seg seg = new Art2Seg(); //Stanford NLP function
 		 seggedText = seg.returnsSegmented(text);
 		 //System.out.println(seggedText);
 	}
 	
-	public void writeArticleAsNodes() throws IOException { //takes segged text and writes it to file as nodes
-		//takes segmented text, adds into graph
-		//open file
+	public void writeArticleAsNodes() throws IOException { //takes segmented text list and writes it to file as nodes (finds thim in the WordMap)
 		String filename = "C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//FinishedArticles//" + engTitle + ".txt";
 		BufferedWriter out = new BufferedWriter(new FileWriter(filename));
 		
@@ -232,24 +234,22 @@ public class MyProgram {
 		
 		String word;
 		
-		while (iterator.hasNext()) {			
+		while (iterator.hasNext()) { //for each word, write it to the file as a node or punctuation. If the word isn't in a dictionary, print an empty node.			
 			word = iterator.next();
-			System.out.println(word);
+			//System.out.println(word);
 			if (word.equals("。") || word.equals("?")) {
-				//System.out.println("Adding punctuation...");
 				out.write(">" + word + "\n");				
-			}else if (word.equals("，")|| word.equals("、")||word.equals("；")||word.equals(":")||word.equals("·")||word.equals("“")||word.equals("”")||word.equals("《")||word.equals("》")) { 
-				//System.out.println("Adding punctuation...");
+			}else if (word.equals("，")|| word.equals("、")||word.equals("；")||word.equals(":")||word.equals("·")||word.equals("“")||word.equals("”")||word.equals("《")||word.equals("》")) { 				
 				out.write(">" + word);				
 			}else {
 				if(!word.contentEquals("")) {					
 					wordNode node = myMap.getNode(word);
-					System.out.println(node.chinWord);
-					if (node.chinWord != null) {//TODO FIX!!!
+					//System.out.println(node.chinWord);
+					if (node.chinWord != null) {//Note, this was functioning poorly before. Fixed it, just make sure it works in the future
 						out.write(">" + word + ", " + node.pinyin + ", " + node.engDef + ", " + node.diffLvl + ", " + node.known);						
 						//System.out.println("adding " + node.chinWord);
-						System.out.println("calling with " + node.chinWord);
-						addToArtVocabList(outVocab, in, node, word); //TODO
+						System.out.println("writing " + node.chinWord);
+						addToArtVocabList(outVocab, in, node, word); 
 						
 					}else {
 						out.write(">" + word + ", " + "-" + ", " + "-"+ ", " + "-" + ", " + "-");
@@ -380,8 +380,9 @@ public class MyProgram {
 		return add;
 	}
 	
-	public void addToArtVocabList(BufferedWriter out, BufferedReader in, wordNode node, String word) throws IOException {
-		System.out.println("mwahaha I got to add vocab list, with " + node.chinWord + " " + node.engDef + " " + node.known);
+	public void addToArtVocabList(BufferedWriter out, BufferedReader in, wordNode node, String word) throws IOException { //writes node to vocab list file, and increments number of occurrences
+		//TODO finish implementing and debugging
+		//System.out.println("mwahaha I got to add vocab list, with " + node.chinWord + " " + node.engDef + " " + node.known);
 		
 		boolean present = false;
 		
@@ -389,10 +390,10 @@ public class MyProgram {
 			System.out.print("it's null ??");
 		}
 		
-//		if (node.known.contentEquals("known")) {
-//			System.out.print("not adding to vocab, is known word");
-//			present = true;
-//		}		
+		//if (node.known.contentEquals("known")) {
+		//	System.out.print("not adding to vocab, is known word");
+		//	present = true;
+		//}		
 				
 		
 		String tempy = new String();
@@ -414,13 +415,14 @@ public class MyProgram {
 		}
 		if (present == false) {
 			out.append("1" + "," + word + "," + node.engDef + "\n");
-			System.out.println("added new word " + node.chinWord);
+			//System.out.println("added new word " + node.chinWord);
 		}	
 		
 	}
 	
 	
-	public boolean checkIfWordOnList(String filename, wordNode node) throws IOException {
+	public boolean checkIfWordOnList(String filename, wordNode node) throws IOException { //check if a word is in the vocab file (known or learning) before adding it 
+		//TODO: modify for addToArtVocabList as well, to make code more modular
 		BufferedReader in = new BufferedReader(new FileReader(filename));
 		String tempy = new String();
 		boolean present = false;
