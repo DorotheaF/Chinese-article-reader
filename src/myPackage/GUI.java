@@ -167,13 +167,15 @@ public class GUI {
 	        	 info[4] = "false";
 	        	 
 	        	 System.out.println(info[0]);
+	        	 System.out.println("test");
 	        	 
-	        	 if (!info[1].contentEquals("")) {      	 
+	        	 if (!info[1].contentEquals("")) {    
+	        		 System.out.println(info[3]);
 	        		 MyProgram.main(info);	
 	        	 }
 	        	 
 	             frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING)); //do I need to do this, or will new window change it?
-	             if (!info[0].contentEquals("")) {
+	             if (!info[1].contentEquals("") && !info[3].contentEquals("")) {
 	            	 thanksMessage(true);		//want this to appear right after pressing enter, but doesn't work. Multiple threads???
 	             }else {
 	            	 thanksMessage(false);

@@ -66,7 +66,7 @@ public class WordMap {
 		wordNode foundNode = fN.new wordNode();
 		
 		if(!wordList.containsKey(first)) {
-			return null;
+			return foundNode;
 		}
 		
 		for (int i=0; i < wordList.get(first).words.size(); i++) {

@@ -1,0 +1,10 @@
+1,一,one; once; a
+1,個,general measure word
+1,很,very; quite
+1,難,difficult
+1,的,indicates possession
+1,句子,sentence
+1,我,I; me
+1,要,to want; to need; will/shall; important
+1,我,I; me
+1,的,indicates possession

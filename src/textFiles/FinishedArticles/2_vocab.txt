@@ -1,5 +1,0 @@
-1,回到,to return to 
-1,倉庫,depot; storehouse; warehouse
-1,心情,mood; state of mind
-1,沮喪,dejected; depressed; dispirited
-1,搞砸,to mess (sth) up to foul up to spoil 

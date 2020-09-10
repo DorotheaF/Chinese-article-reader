@@ -32,9 +32,12 @@ public class MyProgram {
 		Instance.variableFiller(args[0], args[1], args[2], args[3], args[4]);
 		//Instance.check();
 		
+		//System.out.println(args[0]);
+		
 		try {
 			Instance.graphFiller();
 			Instance.textToSegmenter();
+			
 			Instance.writeArticleAsNodes();
 			Instance.backToReadable(engTitle);
 			Instance.difficultyCalculator();
@@ -117,16 +120,16 @@ public class MyProgram {
 		source = Source;
 		if (Art=="false") {
 			//check if text is clean
-			try {
+			//try {
 				//TODO check if text is trad or simp
-				text = textToTraditional(Text);
-			} catch (IOException e) {
+				text = Text; //textToTraditional(Text);
+			///} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				//e.printStackTrace();
+			//}
 		}
 		else if (Art=="true") {
-			System.out.println("check variableFiller line 27 MyProgram");
+			System.out.println("check variableFiller line 129 MyProgram");
 			//call article cleaner and reader, return text and equal text
 		}
 
@@ -144,7 +147,7 @@ public class MyProgram {
 			System.out.println(tempy);
 			indivChar = tempy.split("	");
 			chars.put(indivChar[0], indivChar[1]);
-			System.out.println("added " + indivChar[0] + " and " + indivChar[1]);
+			//System.out.println("added " + indivChar[0] + " and " + indivChar[1]);
 		}
 		
 		in.close();
@@ -179,7 +182,7 @@ public class MyProgram {
 			System.out.println(tempy);
 			indivChar = tempy.split("	");
 			chars.put(indivChar[1], indivChar[0]);
-			System.out.println("added " + indivChar[1] + " and " + indivChar[0]);
+			//System.out.println("added " + indivChar[1] + " and " + indivChar[0]);
 		}
 		
 		in.close();
@@ -231,6 +234,7 @@ public class MyProgram {
 		
 		while (iterator.hasNext()) {			
 			word = iterator.next();
+			System.out.println(word);
 			if (word.equals("。") || word.equals("?")) {
 				//System.out.println("Adding punctuation...");
 				out.write(">" + word + "\n");				
@@ -240,8 +244,8 @@ public class MyProgram {
 			}else {
 				if(!word.contentEquals("")) {					
 					wordNode node = myMap.getNode(word);
-					
-					if (!node.equals(null)) {
+					System.out.println(node.chinWord);
+					if (node.chinWord != null) {//TODO FIX!!!
 						out.write(">" + word + ", " + node.pinyin + ", " + node.engDef + ", " + node.diffLvl + ", " + node.known);						
 						//System.out.println("adding " + node.chinWord);
 						System.out.println("calling with " + node.chinWord);
