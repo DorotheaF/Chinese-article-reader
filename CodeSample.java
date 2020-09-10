@@ -1,3 +1,5 @@
+//snippets from myPackage>MyProgram file that summarize the program's functionality and display some of my coding abilities (9/10/20 version)
+
 package myPackage;
 
 import java.io.BufferedReader;
@@ -46,78 +48,19 @@ public class MyProgram {
 	public static void main(String[] args) {
 		MyProgram Instance = new MyProgram();
 		Instance.variableFiller(args[0], args[1], args[2], args[3], args[4]);
-		//Instance.check();
-		
-		//System.out.println(args[0]);
 		
 		try {
 			Instance.graphFiller(); //fills the dictionary WordMap
 			Instance.textToSegmenter(); //Segments text 			
 			Instance.writeArticleAsNodes(); //Writes words/nodes to new file
-			//Instance.backToReadable(engTitle); 
-			Instance.difficultyCalculator(); //Not yet implemented. Will calculate difficulty level of the article based on percentages of words of different difficulties
+			Instance.difficultyCalculator(); //Work in progress. Will calculate difficulty level of the article based on percentages of words of different difficulties
 			Instance.addToDir(); //adds the new file to the directory 
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		//end instance when? After other article is clicked, or after this one finishes?
-		
+		}		
 	}
 	
-	public void graphFiller() throws IOException {
-		//for HSK 1-6, and large c-dict 
-		//TODO make file paths more generic
-		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//HSK1.txt"); 
-		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//HSK2.txt"); 
-		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//HSK3.txt"); 
-		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//HSK4.txt"); 
-		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//HSK5.txt"); 
-		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//HSK6.txt"); 
-		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//c-dict.txt"); 
-		addMyLists();
-		
-		//System.out.println("Graphfilled"); 
-		//myMap.printNodes();
-	}
-	
-	public void readInFile(String filename) throws IOException { //This is not functional for now
-		BufferedReader in = new BufferedReader(new FileReader(filename));
-		String [] args = new String[5];
-		String tempy;
-		while((tempy=in.readLine())!=null) {
-			//System.out.println(tempy);
-			String splitted[] = tempy.split(", ");
-			args[0] = splitted[0];
-			args[1] = splitted[1];
-			args[2] = splitted[2];
-			args[3] = splitted[3];
-			args[4] = splitted[4];
-			//System.out.println(args[0] + "::" + args[1] + "::" + args[2] + "::" + args[3] + "::" + args[4]);
-			myMap.addWord(args);
-		}
-		in.close();
-	}
-	
-	public void addMyLists() throws IOException { //reads in my known words (adds to last field in node if known/learning)
-		BufferedReader in = new BufferedReader(new FileReader("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//knownWords.txt"));
-		String tempy;
-		while((tempy=in.readLine())!=null) {
-			tempy = tempy.split(",")[0];
-			wordNode node = myMap.getNode(tempy);
-			node.known = "known";
-		}	
-		in.close();
-		
-		BufferedReader in2 = new BufferedReader(new FileReader("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//learningWords.txt"));
-		String tempy2;
-		while((tempy2=in2.readLine())!=null) {
-			wordNode node = myMap.getNode(tempy2);
-			node.known = "learning";
-		}	
-		in2.close();		
-	}
-	
-	public void variableFiller(String ChinTitle, String EngTitle, String Source, String Text, String Art) {
+	public void variableFiller(String ChinTitle, String EngTitle, String Source, String Text, String Art) { //takes the arguments passed from the UI and filles corresponding program variables
 		chinTitle = ChinTitle;
 		if (chinTitle==null) {
 			//add first sentence as title
@@ -140,42 +83,7 @@ public class MyProgram {
 
 	}
 	
-	public String textToSimplified(String text) throws IOException { //convert text to simplified
-		String[] textTemp = new String[text.length()];
-		textTemp = text.split("");
-		Hashtable<String, String> chars = new Hashtable<String, String>();
-		
-		String tempy;
-		String[] indivChar;
-		BufferedReader in = new BufferedReader(new FileReader("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//TradToSimp.txt"));
-		while ((tempy = in.readLine()) != null) {
-			System.out.println(tempy);
-			indivChar = tempy.split("	");
-			chars.put(indivChar[0], indivChar[1]);
-			//System.out.println("added " + indivChar[0] + " and " + indivChar[1]);
-		}
-		
-		in.close();
-		
-		for (int i = 0; i < textTemp.length; i++) {
-			if(chars.containsKey(textTemp[i])) {
-				System.out.println("replacing " + textTemp[i] + " with " + chars.get(textTemp[i]));
-				textTemp[i] = chars.get(textTemp[i]);
-			}
-		}
-		
-		String backToText = "";
-		
-		for (int i = 0; i < textTemp.length; i++) {
-			backToText += textTemp[i];			
-		}
-		
-		text = backToText;
-		System.out.println("The simplified text is " + text);
-		return text;
-	}
-	
-	public String textToTraditional(String text) throws IOException { //convert text to traditional 
+	public String textToTraditional(String text) throws IOException { //convert text to traditional, by using a large file with a list of characters and their traditional version 
 		String[] textTemp = new String[text.length()];
 		textTemp = text.split("");
 		Hashtable<String, String> chars = new Hashtable<String, String>();
@@ -210,8 +118,57 @@ public class MyProgram {
 		return text;
 	}
 	
-	public void articleToText() { //TODO
-		//open article, find title and source(2)--when only file is given--clean text, enter it into text variable 
+	public void graphFiller() throws IOException { //makes a WordMap from the dictionaries
+		//for HSK 1-6, and large c-dict 
+		//TODO make file paths more generic
+		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//HSK1.txt"); 
+		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//HSK2.txt"); 
+		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//HSK3.txt"); 
+		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//HSK4.txt"); 
+		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//HSK5.txt"); 
+		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//HSK6.txt"); 
+		readInFile("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//c-dict.txt"); 
+		addMyLists();
+		
+		//System.out.println("Graphfilled"); 
+		//myMap.printNodes();
+	}
+	
+	public void readInFile(String filename) throws IOException { //This is not functional for now
+		BufferedReader in = new BufferedReader(new FileReader(filename));
+		String [] args = new String[5];
+		String tempy;
+		while((tempy=in.readLine())!=null) {
+			//System.out.println(tempy);
+			String splitted[] = tempy.split(", ");
+			args[0] = splitted[0];
+			args[1] = splitted[1];
+			args[2] = splitted[2];
+			args[3] = splitted[3];
+			args[4] = splitted[4];
+			//System.out.println(args[0] + "::" + args[1] + "::" + args[2] + "::" + args[3] + "::" + args[4]);
+			myMap.addWord(args); //WordMap class function
+		}
+		in.close();
+	}
+	
+	public void addMyLists() throws IOException { //reads in my known/learning words (adds to last field in node if known/learning)
+		BufferedReader in = new BufferedReader(new FileReader("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//knownWords.txt"));
+		String tempy;
+		while((tempy=in.readLine())!=null) {
+			tempy = tempy.split(",")[0];
+			wordNode node = myMap.getNode(tempy);
+			node.known = "known";
+		}	
+		in.close();
+		
+		BufferedReader in2 = new BufferedReader(new FileReader("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//learningWords.txt"));
+		String tempy2;
+		while((tempy2=in2.readLine())!=null) {
+			wordNode node = myMap.getNode(tempy2);
+			node.known = "learning";
+		}	
+		in2.close();		
 	}
 	
 	public void textToSegmenter() {
@@ -281,70 +238,13 @@ public class MyProgram {
 		//TODO make calculator algorithms
 		//diffLvl[8] = (diffLvl[0]/diffLvl[7])*10;// + (diffLvl[6]/diffLvl[7])*6 + (diffLvl[5]/diffLvl[7])*5 + (diffLvl[4]/diffLvl[7])*4 + (diffLvl[3]/diffLvl[7])*3 - (diffLvl[2]/diffLvl[7])*2 - (diffLvl[1]/diffLvl[7])*1;//make better algorithm for this
 		System.out.println(diffLvl[8]);
-		float difflvl;
-		difflvl = (diffLvl[0]/diffLvl[7])*10;// + (diffLvl[6]/diffLvl[7])*6 + (diffLvl[5]/diffLvl[7])*5 + (diffLvl[4]/diffLvl[7])*4 + (diffLvl[3]/diffLvl[7])*3 - (diffLvl[2]/diffLvl[7])*2 - (diffLvl[1]/diffLvl[7])*1;//make better algorithm for this
+		float difflvl = 0; //TODO calculate this
+		//difflvl = (diffLvl[0]/diffLvl[7])*10;// + (diffLvl[6]/diffLvl[7])*6 + (diffLvl[5]/diffLvl[7])*5 + (diffLvl[4]/diffLvl[7])*4 + (diffLvl[3]/diffLvl[7])*3 - (diffLvl[2]/diffLvl[7])*2 - (diffLvl[1]/diffLvl[7])*1;//make better algorithm for this
 		System.out.println(difflvl);
 		diffLvl[8] = (int) difflvl;
 	}
 	
-	public WordMap articleToMap(String engTitle) throws IOException {
-		String filename = "C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//FinishedArticles//" + engTitle + ".txt";
-		BufferedReader in = new BufferedReader(new FileReader(filename));
-		String tempy;		
-		tempy=in.readLine();
-		
-		while((tempy=in.readLine())!=null) {
-			String splitted[] = tempy.split(">");
-			//System.out.println(tempy);
-			for (int i = 0; i < splitted.length; i++) {
-				//System.out.println(splitted[i]);
-				String node = splitted[i];
-				String args[] = node.split(", ");
-				if (args.length!=1){
-					if (!args[3].contentEquals("-")) {
-						artMap.addWord(args);
-						if (args[4]!="und") {
-							artMap.getNode(args[0]).known = args[4];
-						}
-						//totalWords = totalWords + 1; 
-					}
-				}								
-			}			
-		}
-		//System.out.println("Diff Levels : " + diffLvl[1] + ", " + diffLvl[2] + ", " + diffLvl[3] + ", " + diffLvl[4] + ", " + diffLvl[5] + ", " + diffLvl[6] + ". Unknown: " + diffLvl[0] + ", " + diffLvl[7]);
-		in.close();
-		//tempMap.printNodes();
-		return artMap;
-	}
 	
-	public List<String> backToReadable(String engTitle) throws IOException {
-		BufferedReader in = new BufferedReader(new FileReader("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//FinishedArticles//" + engTitle + ".txt"));
-		BufferedWriter out = new BufferedWriter(new FileWriter("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//FinishedArticles//ReadableTestText.txt"));
-		List<String> text = new ArrayList<String>();
-		String tempy;
-		tempy=in.readLine();
-		String splitted[] = tempy.split(">");
-		out.write(splitted[0] + "\n");
-		while((tempy=in.readLine())!=null) {
-			splitted = tempy.split(">");
-			for (int i = 0; i < splitted.length; i++) {
-				String node = splitted[i];
-				String word = node.split(",")[0];
-				out.write(word);
-				text.add(word);
-				//System.out.print(word);
-				if (word.equals("。")) {
-					out.write("\n");
-					text.add("\n");
-				}
-			}		
-			
-		}
-		in.close();
-		out.close();
-		//System.out.println(text);
-		return text;
-	}
 	
 	public void addToDir() throws IOException {
 		BufferedWriter out = new BufferedWriter(new FileWriter("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//FinishedArticles//Directory.txt", true));
@@ -352,12 +252,6 @@ public class MyProgram {
 		out.close();
 	}
 
-	public void check() {
-		System.out.println(engTitle);
-		System.out.println(source);
-		System.out.println(text);
-	}
-	
 	public boolean addToLearning(wordNode node) throws IOException { //check if it is already on list
 		String filename = "C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//learningWords.txt";
 		boolean add = checkIfWordOnList(filename, node);
@@ -379,6 +273,28 @@ public class MyProgram {
 		}
 		//TODO remove word from learning
 		return add;
+	}
+	
+	public boolean checkIfWordOnList(String filename, wordNode node) throws IOException { //check if a word is in the vocab file (known or learning) before adding it 
+		//TODO: modify for addToArtVocabList as well, to make code more modular
+		BufferedReader in = new BufferedReader(new FileReader(filename));
+		String tempy = new String();
+		boolean present = false;
+		
+		
+		
+		while((tempy=in.readLine())!=null){
+			tempy=tempy.split(",")[0];
+			//System.out.println(tempy);
+			if(tempy.contentEquals(node.chinWord)) {
+				present = true;
+				System.out.println("already in list");
+				in.close();
+				return present;
+			}
+		}
+		in.close();		
+		return present;
 	}
 	
 	public void addToArtVocabList(BufferedWriter out, BufferedReader in, wordNode node, String word) throws IOException { //writes node to vocab list file, and increments number of occurrences
@@ -419,28 +335,61 @@ public class MyProgram {
 			//System.out.println("added new word " + node.chinWord);
 		}	
 		
+	}	
+	
+	public WordMap articleToMap(String engTitle) throws IOException { //reads the file of nodes and creates a WordMap out of them
+		String filename = "C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//FinishedArticles//" + engTitle + ".txt";
+		BufferedReader in = new BufferedReader(new FileReader(filename));
+		String tempy;		
+		tempy=in.readLine();
+		
+		while((tempy=in.readLine())!=null) {
+			String splitted[] = tempy.split(">");
+			//System.out.println(tempy);
+			for (int i = 0; i < splitted.length; i++) {
+				//System.out.println(splitted[i]);
+				String node = splitted[i];
+				String args[] = node.split(", ");
+				if (args.length!=1){
+					if (!args[3].contentEquals("-")) {
+						artMap.addWord(args);
+						if (args[4]!="und") {
+							artMap.getNode(args[0]).known = args[4];
+						}
+					}
+				}								
+			}			
+		}
+		//System.out.println("Diff Levels : " + diffLvl[1] + ", " + diffLvl[2] + ", " + diffLvl[3] + ", " + diffLvl[4] + ", " + diffLvl[5] + ", " + diffLvl[6] + ". Unknown: " + diffLvl[0] + ", " + diffLvl[7]);
+		in.close();
+		return artMap;
 	}
 	
-	
-	public boolean checkIfWordOnList(String filename, wordNode node) throws IOException { //check if a word is in the vocab file (known or learning) before adding it 
-		//TODO: modify for addToArtVocabList as well, to make code more modular
-		BufferedReader in = new BufferedReader(new FileReader(filename));
-		String tempy = new String();
-		boolean present = false;
-		
-		
-		
-		while((tempy=in.readLine())!=null){
-			tempy=tempy.split(",")[0];
-			//System.out.println(tempy);
-			if(tempy.contentEquals(node.chinWord)) {
-				present = true;
-				System.out.println("already in list");
-				in.close();
-				return present;
-			}
+	public List<String> backToReadable(String engTitle) throws IOException { //returns a list of all the words and punctuation in an article (for UI display)
+		BufferedReader in = new BufferedReader(new FileReader("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//FinishedArticles//" + engTitle + ".txt"));
+		BufferedWriter out = new BufferedWriter(new FileWriter("C://Users//Dorot//OneDrive//Projects//EclipseWorkspace//ChineseArticleReader//src//textFiles//FinishedArticles//ReadableTestText.txt"));
+		List<String> text = new ArrayList<String>();
+		String tempy;
+		tempy=in.readLine();
+		String splitted[] = tempy.split(">");
+		out.write(splitted[0] + "\n");
+		while((tempy=in.readLine())!=null) {
+			splitted = tempy.split(">");
+			for (int i = 0; i < splitted.length; i++) {
+				String node = splitted[i];
+				String word = node.split(",")[0];
+				out.write(word);
+				text.add(word);
+				//System.out.print(word);
+				if (word.equals("。")) {
+					out.write("\n");
+					text.add("\n");
+				}
+			}		
+			
 		}
-		in.close();		
-		return present;
+		in.close();
+		out.close();
+		return text;
 	}
 }
